@@ -140,6 +140,11 @@ REST_FRAMEWORK = {
     ),
 }
 
+OAUTH2_PROVIDER = {
+    # this is the list of available scopes
+    'SCOPES': {'read': 'Read scope', 'write': 'Write scope', 'groups': 'Access to your groups'}
+}
+
 # --- Specify the authentication backends
 
 AUTHENTICATION_BACKENDS = (
@@ -150,12 +155,5 @@ AUTHENTICATION_BACKENDS = (
 
 AUTH_USER_MODEL = 'auth_demo.User'
 
-REST_FRAMEWORK = {
-    'DEFAULT_AUTHENTICATION_CLASSES': (
-        'rest_framework.authentication.BasicAuthentication',
-        'rest_framework.authentication.SessionAuthentication',
-        'rest_framework.authentication.OAuth2Authentication'
-    )
-}
 
 #SECURE_SSL_REDIRECT = True
