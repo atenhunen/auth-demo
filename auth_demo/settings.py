@@ -32,6 +32,7 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+    'sslserver',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -40,6 +41,8 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'oauth2_provider',
     'rest_framework',
+    #'provider',
+    #'provider.oauth2',
     'auth_demo'
 ]
 
@@ -142,6 +145,17 @@ REST_FRAMEWORK = {
 AUTHENTICATION_BACKENDS = (
     #'django.contrib.auth.backends.ModelBackend' # To keep the Browsable API
     'oauth2_provider.backends.OAuth2Backend',
+    'django.contrib.auth.backends.ModelBackend'
 )
 
 AUTH_USER_MODEL = 'auth_demo.User'
+
+REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': (
+        'rest_framework.authentication.BasicAuthentication',
+        'rest_framework.authentication.SessionAuthentication',
+        'rest_framework.authentication.OAuth2Authentication'
+    )
+}
+
+#SECURE_SSL_REDIRECT = True
