@@ -164,7 +164,7 @@ APPEND_SLASH = True
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST = 'smtp.sendgrid.net'
 EMAIL_HOST_USER = 'apikey'
-EMAIL_HOST_PASSWORD = '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'
+EMAIL_HOST_PASSWORD = ''
 EMAIL_PORT = 587
 EMAIL_USE_TLS = True
 
