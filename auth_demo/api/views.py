@@ -10,24 +10,12 @@ from django.contrib.auth.models import Group
 from django.core.mail import send_mail
 from django.conf import settings
 from rest_framework.response import Response
-from rest_framework.authentication import SessionAuthentication
 from rest_framework import generics, permissions, serializers
 from oauth2_provider.contrib.rest_framework import TokenHasReadWriteScope, TokenHasScope
 
 from auth_demo.models.user import User
 from auth_demo.api.constants import Status
-
-
-# first we define the serializers
-class UserSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = User
-        fields = ("username", "email", "first_name", "last_name")
-
-class GroupSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = Group
-        fields = ("name", )
+from auth_demo.api.serialisers import UserSerializer, GroupSerializer
 
 # Create the API views
 class UserList(generics.ListCreateAPIView):
