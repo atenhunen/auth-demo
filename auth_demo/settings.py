@@ -12,6 +12,7 @@ https://docs.djangoproject.com/en/1.11/ref/settings/
 
 
 import os
+import urllib
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -170,3 +171,6 @@ EMAIL_USE_TLS = True
 
 HOSTNAME = 'https://localhost'
 DEBUG_MAIL = True
+
+OAUTH2_PROVIDER_HOST = 'https://localhost:8000'
+OAUTH2_PROVIDER_LOGIN_URL = urllib.parse.urljoin(OAUTH2_PROVIDER_HOST, 'o/token/')

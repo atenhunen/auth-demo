@@ -19,6 +19,7 @@ from django.contrib import admin
 
 from auth_demo.api.views import (
     UserList, UserDetails, GroupList, RegisterUser, Activate)
+from auth_demo.api.login import Login
 
 # Setup the URLs and include login URLs for the browsable API.
 urlpatterns = [
@@ -28,5 +29,6 @@ urlpatterns = [
     path('users/<pk>/', UserDetails.as_view()),
     path('groups/', GroupList.as_view()),
     path('users/register', RegisterUser.as_view()),
-    path('activate/<activation_token>/', Activate.as_view())
+    path('activate/<activation_token>/', Activate.as_view()),
+    path('login/', Login.as_view())
 ]
