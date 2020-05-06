@@ -2,6 +2,8 @@ import json
 import secrets
 
 import auth_demo.models.utils
+
+from django.http import HttpResponse
 from urllib.parse import urljoin
 
 from django.contrib.auth.models import Group
@@ -131,7 +133,7 @@ def generate_activation_link(email, hostname=None):
     return url, token
 
 
-class Activate(generics.CreateAPIView):
+class Activate(generics.RetrieveAPIView):
     """Django REST API for activating registered users."""
     #permission_classes = [permissions.IsAuthenticated, TokenHasReadWriteScope]
     permission_classes = []
@@ -150,12 +152,9 @@ class Activate(generics.CreateAPIView):
 
         user = auth_demo.models.utils.get_if_exists(User, activation_token=kwargs["activation_token"])
         if user is None:
-            return Response(
-                json.dumps({"status": "Unknown activation token"}),
-                status=Status.HTTP_400_BAD_REQUEST)
+            return HttpResponse("Unknown activation token")
+        if user.is_active:
+            return HttpResponse("Your user account is already active.")
         user.is_active = True
         user.save()
-        return Response(
-            json.loads('{"status": "OK"}'),
-            status=Status.HTTP_200_SUCCESS)
-
+        return HttpResponse("Thank you for activating your user account!")
