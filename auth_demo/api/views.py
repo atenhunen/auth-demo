@@ -10,7 +10,7 @@ from django.contrib.auth.models import Group
 from django.core.mail import send_mail
 from django.conf import settings
 from rest_framework.response import Response
-from rest_framework import generics, permissions, serializers
+from rest_framework import generics, permissions
 from oauth2_provider.contrib.rest_framework import TokenHasReadWriteScope, TokenHasScope
 
 from auth_demo.models.user import User

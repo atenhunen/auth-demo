@@ -13,6 +13,9 @@ Create new application and fill the form
 
 We are ready now, OAuth can be tested.
 
+Note! this application will be used accross this demo.
+Note! Ensure this application has id=1
+
 #Get token
 We can try with curl to grant access and get token.
 ```bash
@@ -25,6 +28,10 @@ response:
 
 access_token field now reveals the OAuth token. This can be used to access data.
 
+Access API with token
+```bash
+curl -H "Authorization: Bearer <your_access_token>" https://localhost:8000/users/
+```
 
 #Refresh token
 ```bash
