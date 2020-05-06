@@ -17,7 +17,8 @@ Including another URLconf
 from django.urls import path, include
 from django.contrib import admin
 
-from auth_demo.api.views import UserList, UserDetails, GroupList
+from auth_demo.api.views import (
+    UserList, UserDetails, GroupList, RegisterUser, Activate)
 
 # Setup the URLs and include login URLs for the browsable API.
 urlpatterns = [
@@ -26,5 +27,6 @@ urlpatterns = [
     path('users/', UserList.as_view()),
     path('users/<pk>/', UserDetails.as_view()),
     path('groups/', GroupList.as_view()),
-
+    path('users/register', RegisterUser.as_view()),
+    path('activate/<activation_token>/', Activate.as_view())
 ]

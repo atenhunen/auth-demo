@@ -138,6 +138,10 @@ REST_FRAMEWORK = {
     'DEFAULT_PERMISSION_CLASSES': (
         'rest_framework.permissions.IsAuthenticated',
     ),
+    'DEFAULT_RENDERER_CLASSES': [
+        'rest_framework.renderers.JSONRenderer',
+        'rest_framework.renderers.BrowsableAPIRenderer',
+    ]
 }
 
 OAUTH2_PROVIDER = {
@@ -154,6 +158,15 @@ AUTHENTICATION_BACKENDS = (
 )
 
 AUTH_USER_MODEL = 'auth_demo.User'
+APPEND_SLASH = True
 
+#Twilio Email service
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'smtp.sendgrid.net'
+EMAIL_HOST_USER = 'apikey'
+EMAIL_HOST_PASSWORD = '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'
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True
 
-#SECURE_SSL_REDIRECT = True
+HOSTNAME = 'https://localhost'
+DEBUG_MAIL = True
