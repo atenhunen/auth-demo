@@ -169,7 +169,7 @@ EMAIL_HOST_PASSWORD = ''
 EMAIL_PORT = 587
 EMAIL_USE_TLS = True
 
-HOSTNAME = 'https://localhost'
+HOSTNAME = 'https://localhost:8000'
 DEBUG_MAIL = True
 
 OAUTH2_PROVIDER_HOST = 'https://localhost:8000'
