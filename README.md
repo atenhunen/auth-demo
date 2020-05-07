@@ -42,3 +42,30 @@ response:
 ```bash
 {"access_token": "K0GltFYwwXBZJPd2Yw4wiF919Q0sBZ", "expires_in": 36000, "token_type": "Bearer", "scope": "read write groups", "refresh_token": "CPQ7GPXmIyun0uXVQ4P2CdDN0PkPDI"}
 ```
+
+# Run tests
+First install virtualenv
+```bash
+cd auth-demo
+sudo python3 -m pip install virtualenv
+```
+
+then, create virtualenv
+```bash
+python3 -m venv venv
+```
+
+then, install test dependencies to virtual env
+```bash
+venv/bin/pip3 install -r test_requirements.txt
+```
+
+in order to run unit tests with integration tests, add write permissions to DB
+```bash
+sudo chmod 664 db.sqlite3
+```
+
+Then run the tests
+```bash
+PYTHONPATH=. venv/bin/py.test -vv
+```
