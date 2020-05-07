@@ -78,7 +78,7 @@ def create_user(data):
         link, _ = generate_activation_link(email)
         _send_mail(
             subject="Test server - Please activate you user",
-            message=f'Dear user, please activate your user by clicking here {link}.',
+            message=f'Dear user, please activate your user by clicking here {link}',
             recipients=[email])
         return Response(serialized.data, status=Status.HTTP_201_CREATED)
     else:
