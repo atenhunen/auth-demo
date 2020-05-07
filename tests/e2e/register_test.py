@@ -7,7 +7,7 @@ from django.contrib.auth import get_user_model
 from oauth2_provider.models import Application
 from tests.data import populateDB
 
-
+@pytest.mark.skip
 @pytest.mark.django_db
 def test_register_user():
     populateDB()
@@ -24,5 +24,5 @@ def test_register_user():
     response = requests.post(url, data=data, verify=False)
     resp = response.json()
     #activate_link = resp.get("access_token", None)
-    assert resp == "foo"
+    assert resp == "foo", resp
 
