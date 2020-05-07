@@ -1,4 +1,4 @@
-from django.contrib.auth.models import User
+from auth_demo.models.user import User
 from django.shortcuts import get_object_or_404
 from auth_demo.api.serialisers import (
     UserSerializer, NonAutheticatedUserSerializer)
@@ -22,21 +22,24 @@ class UserViewSet(viewsets.ViewSet):
         return Response(serializer.data)
 
     def retrieve(self, request, pk=None):
-        user = get_user_or_none(User, pk=pk)
+        user = get_user_or_none(pk=pk)
         if authenticate_bearer_token(request):
-            serializer = UserSerializer(user, many=True)
+            serializer = UserSerializer(user, many=False)
         else:
-            serializer = NonAutheticatedUserSerializer(user, many=True)
+            serializer = NonAutheticatedUserSerializer(user, many=False)
         return Response(serializer.data)
 
 
 def authenticate_bearer_token(request):
     """Authenticate bearer token"""
-    token_string = request['_request'].get('HTTP_AUTHORIZATION', None)
-    print(f'request token {token_string}')
-    token_clean = token_string.split(' ')[1]
-    print(f'clean token {token_string.split(" ")[1]}')
-    print(f'clean token {token_clean}')
+
+    try:
+        token_string = request['_request'].get('HTTP_AUTHORIZATION', None)
+        token_clean = token_string.split(' ')[1]
+    except Exception:
+
+        token_clean = str(request.auth)
+    print(f'request token {token_clean}')
     token = get_token_or_none(token=token_clean)
     if token is None:
         return False
@@ -50,7 +53,7 @@ def get_user_or_none(**filtering):
 
 def get_object_or_none(model, **filtering):
     try:
-        queryset = model.get(**filtering)
-    except model.ObjectDoesNotExist:
+        queryset = model.objects.get(**filtering)
+    except model.DoesNotExist:
         queryset = None
     return queryset

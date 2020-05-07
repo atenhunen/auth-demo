@@ -9,7 +9,8 @@ from django.urls import path, include
 from django.contrib import admin
 
 from auth_demo.api.views import (
-    UserList, UserDetails, GroupList, RegisterUser, Activate)
+    GroupList, RegisterUser, Activate)
+from auth_demo.api.users import UserViewSet
 from auth_demo.api.login import Login
 from auth_demo.api.update_password import UpdatePassword
 
@@ -17,8 +18,8 @@ from auth_demo.api.update_password import UpdatePassword
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('o/', include('oauth2_provider.urls', namespace='oauth2_provider')),
-    path('users/', UserList.as_view()),
-    path('users/<pk>/', UserDetails.as_view()),
+    path('users/', UserViewSet.as_view(actions={'get': 'list'})),
+    path('users/<pk>/', UserViewSet.as_view(actions={'get': 'retrieve'})),
     path('groups/', GroupList.as_view()),
     path('users/register', RegisterUser.as_view()),
     path('activate/<activation_token>/', Activate.as_view()),
