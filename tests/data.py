@@ -1,8 +1,5 @@
 """Test data."""
 
-from oauth2_provider.models import Application
-
-from django.apps import apps
 
 DATA = {
     'User': {
