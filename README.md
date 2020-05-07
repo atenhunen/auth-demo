@@ -171,3 +171,14 @@ response:
 ```bash
 {"access_token": "K0GltFYwwXBZJPd2Yw4wiF919Q0sBZ", "expires_in": 36000, "token_type": "Bearer", "scope": "read write groups", "refresh_token": "CPQ7GPXmIyun0uXVQ4P2CdDN0PkPDI"}
 ```
+
+## Running with production settings
+
+### Gunicorn
+cd auth-demo
+source venv/bin/activate
+gunicorn auth_demo.wsgi –workers=4 --bind 0.0.0.0:443 --certfile=<path-to-my-cert> --keyfile=<path-to-my-key>
+
+### Docker and Gunicorn
+sudo docker build -t auth-demo --tag flask_gunicorn_app .
+sudo docker run --privileged --expose 8000 443 auth-demo
