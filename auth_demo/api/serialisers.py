@@ -38,4 +38,4 @@ class ChangePasswordSerializer(serializers.Serializer):
 class NonAutheticatedUserSerializer(serializers.ModelSerializer):
     class Meta:
         model = User
-        fields = ("first_name")
+        fields = ("first_name",)
