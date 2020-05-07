@@ -2,7 +2,9 @@ import pytest
 import os
 import django
 
-os.environ.setdefault("DJANGO_SETTINGS_MODULE", "auth_demo.settings")
+import os
+
+os.environ.setdefault("DJANGO_SETTINGS_MODULE", "auth_demo.test_settings")
 django.setup()
 
 def _mock_config():
