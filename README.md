@@ -1,3 +1,7 @@
+# OAuth2 API with Django and Django REST Framework
+
+This repo demonstrates an OAuth2 based authorization for accessing a user information. Core stack consists of Python 3.7, Django 3, Django REST Framework and Django Oauth2 Provider.
+
 # Installation
 
 ## Create virtualenv
